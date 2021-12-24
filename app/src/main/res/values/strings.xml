@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Sharing Browser</string>
     <string name="hint_text">Search Google or type a URL</string>
+    <string name="text_describe">Share others background</string>
 </resources>
