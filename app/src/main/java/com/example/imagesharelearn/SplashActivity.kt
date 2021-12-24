@@ -30,7 +30,7 @@ class SplashActivity : AppCompatActivity() {
         Handler().postDelayed({
             startActivity(Intent(this, MainActivity::class.java))
             finish()
-        }, 4000)
+        }, 3500)
     }
 
     private fun startExample(v: View?) {
