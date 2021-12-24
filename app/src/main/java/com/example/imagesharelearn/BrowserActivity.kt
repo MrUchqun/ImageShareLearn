@@ -38,7 +38,7 @@ class BrowserActivity : AppCompatActivity() {
     }
 
     private fun getUrl(): String? {
-        return intent.extras!!.getString("editTextText")
+        return intent.extras!!.getString(MainActivity().etKey)
     }
 
     fun String.isValidUrl(): Boolean = Patterns.WEB_URL.matcher(this).matches()
