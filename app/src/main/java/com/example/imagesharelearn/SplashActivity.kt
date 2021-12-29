@@ -17,7 +17,7 @@ import kotlin.coroutines.coroutineContext
 @SuppressLint("CustomSplashScreen")
 class SplashActivity : AppCompatActivity() {
     private var fadingTextView : FadingTextView? = null
-    private val appName = "Sharing Browser"
+    private val appName = "Simple Browser"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)

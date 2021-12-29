@@ -16,11 +16,9 @@ import java.io.ByteArrayOutputStream
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var buttonSearch : Button
-    lateinit var buttonShare1: Button
-    lateinit var buttonShare2: Button
-    lateinit var buttonShare3: Button
-    lateinit var editText : EditText
+    private lateinit var buttonSearch : Button
+    private lateinit var buttonShare: Button
+    private lateinit var editText : EditText
     val etKey = "editTextText"
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,10 +33,23 @@ class MainActivity : AppCompatActivity() {
             buttonSearch(editText())
         }
 
-        buttonShare1 = findViewById(R.id.btn_share_1)
-        buttonShare1.setOnClickListener {
-
+        buttonShare = findViewById(R.id.btn_share)
+        buttonShare.setOnClickListener {
+            buttonShare(imageToUri())
         }
+
+    }
+
+    private fun imageToUri(): Uri{
+        return Uri.parse("android.resource://com.example.imagesharelearn/drawable/im_background")
+    }
+
+    private fun buttonShare(uri: Uri?){
+        val intent = Intent()
+        intent.action = Intent.ACTION_SEND
+        intent.type = "image/*"
+        intent.putExtra(Intent.EXTRA_STREAM,uri)
+        startActivity(Intent.createChooser(intent,"Share"))
     }
 
     private fun buttonSearch(url:String){
@@ -52,45 +63,30 @@ class MainActivity : AppCompatActivity() {
         return editText.text.toString()
     }
 
-    private fun shareImage(uriToImage : Uri){
-        val intent = Intent()
-        intent.action = Intent.ACTION_SEND
-        intent.putExtra(Intent.EXTRA_STREAM,uriToImage)
-        intent.type = "image/*"
-        startActivity(intent)
-    }
-
-
-    fun convertImageViewToBitmap(imageView : ImageView) {
-        imageView.buildDrawingCache()
-        val bitmap: Bitmap = imageView.drawingCache
-        val uri = getImageUri(this, bitmap)
-        shareImage(uri)
-    }
-
-    private fun getImageUri(inContext: Context, inImage: Bitmap): Uri {
-        val bytes = ByteArrayOutputStream()
-        inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes)
-        val path =
-            MediaStore.Images.Media.insertImage(inContext.contentResolver, inImage, "Title", null)
-        return Uri.parse(path)
-    }
 
 
 
 
-
-
-
-//    private fun imageToUri(v :View){
-//        val byte = ByteArrayOutputStream()
+//    private fun shareImage(uriToImage : Uri){
+//        val intent = Intent()
+//        intent.action = Intent.ACTION_SEND
+//        intent.putExtra(Intent.EXTRA_STREAM,uriToImage)
+//        intent.type = "image/*"
+//        startActivity(intent)
+//    }
 //
+//    fun convertImageViewToBitmap(imageView : ImageView) {
+//        imageView.buildDrawingCache()
+//        val bitmap: Bitmap = imageView.drawingCache
+//        val uri = getImageUri(this, bitmap)
+//        shareImage(uri)
+//    }
+//
+//    private fun getImageUri(inContext: Context, inImage: Bitmap): Uri {
+//        val bytes = ByteArrayOutputStream()
+//        inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes)
+//        val path = MediaStore.Images.Media.insertImage(inContext.contentResolver, inImage, "Title", null)
+//        return Uri.parse(path)
 //    }
 
-
-
-//    private fun imageToBitmap(v :View) : Uri{
-//        v.buildDrawingCache()
-//        val bitmap = v.drawingCache
-//    }
 }

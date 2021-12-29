@@ -14,7 +14,7 @@
         android:layout_centerInParent="true"
         android:textSize="55sp"
         android:gravity="center"
-        android:fontFamily="cursive"
+        android:fontFamily="casual"
         android:textColor="@color/black"/>
 
 </RelativeLayout>
