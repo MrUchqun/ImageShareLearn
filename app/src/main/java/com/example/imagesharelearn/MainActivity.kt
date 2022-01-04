@@ -20,6 +20,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var buttonSearch : Button
     private lateinit var buttonShare: Button
+    private lateinit var buttonEmail: Button
     private lateinit var imageView: ImageView
     private lateinit var editText : EditText
     val etKey = "editTextText"
@@ -41,6 +42,11 @@ class MainActivity : AppCompatActivity() {
         buttonShare = findViewById(R.id.btn_share)
         buttonShare.setOnClickListener {
             buttonShare(imageToUri())
+        }
+
+        buttonEmail = findViewById(R.id.btn_email)
+        buttonEmail.setOnClickListener {
+            buttonEmail()
         }
     }
 
@@ -74,6 +80,11 @@ class MainActivity : AppCompatActivity() {
             val uri = intent.getParcelableExtra<Uri>("background")
             imageView.setImageURI(uri)
         }
+    }
+
+    private fun buttonEmail(){
+        val intentEmail = Intent(this,EmailActivity::class.java)
+        startActivity(intentEmail)
     }
 
 

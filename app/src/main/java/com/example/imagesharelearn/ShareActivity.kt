@@ -60,5 +60,6 @@ class ShareActivity : AppCompatActivity() {
         val intentText = Intent(this,BrowserActivity::class.java)
         intentText.putExtra(MainActivity().etKey,text)
         startActivity(intentText)
+        finish()
     }
 }
