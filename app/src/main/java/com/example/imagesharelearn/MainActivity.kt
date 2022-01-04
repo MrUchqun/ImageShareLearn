@@ -1,5 +1,6 @@
 package com.example.imagesharelearn
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
@@ -12,12 +13,14 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
+import androidx.activity.result.contract.ActivityResultContracts
 import java.io.ByteArrayOutputStream
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var buttonSearch : Button
     private lateinit var buttonShare: Button
+    private lateinit var imageView: ImageView
     private lateinit var editText : EditText
     val etKey = "editTextText"
 
@@ -25,7 +28,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         initView()
+        changeBackground()
     }
+
 
     private fun initView(){
         buttonSearch = findViewById(R.id.btn_search)
@@ -37,7 +42,6 @@ class MainActivity : AppCompatActivity() {
         buttonShare.setOnClickListener {
             buttonShare(imageToUri())
         }
-
     }
 
     private fun imageToUri(): Uri{
@@ -63,6 +67,14 @@ class MainActivity : AppCompatActivity() {
         return editText.text.toString()
     }
 
+    private fun changeBackground(){
+        imageView = findViewById(R.id.view_activity_main)
+        val intent = intent
+        if (intent != null){
+            val uri = intent.getParcelableExtra<Uri>("background")
+            imageView.setImageURI(uri)
+        }
+    }
 
 
 

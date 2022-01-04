@@ -13,15 +13,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ImageShareLearn">
-        <activity
-            android:name=".ShareActivity"
-            android:exported="false" >
-            <intent-filter>
-                <action android:name="android.intent.action.SEND"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-                <data android:mimeType="image/*"/>
-            </intent-filter>
-        </activity>
+
         <activity
             android:name=".SplashActivity"
             android:exported="true"
@@ -32,12 +24,32 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".MainActivity"
             android:theme="@style/Theme.Design.Light.NoActionBar" />
+
         <activity
             android:name=".BrowserActivity"
             android:theme="@style/Theme.Design.Light.NoActionBar" />
+
+        <activity
+            android:name=".ShareActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.SEND"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:mimeType="image/*"/>
+            </intent-filter>
+
+            <intent-filter>
+                <action android:name="android.intent.action.SEND"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:mimeType="text/plain"/>
+            </intent-filter>
+
+        </activity>
+
     </application>
 
 </manifest>
